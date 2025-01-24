@@ -8,6 +8,7 @@ const Navbar = ({ themeToggled, toggleTheme }) => {
         <AppBar position="static">
             <Container maxWidth="xl">
                 <Toolbar disableGutters>
+                    <img src="logo.svg" alt="Logo" style={{height: '32px', marginRight: '4px'}} />
                     <Typography
                         variant="h6"
                         noWrap
