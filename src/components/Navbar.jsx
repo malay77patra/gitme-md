@@ -8,19 +8,20 @@ const Navbar = ({ themeToggled, toggleTheme }) => {
         <AppBar position="static">
             <Container maxWidth="xl">
                 <Toolbar disableGutters>
-                    <img src="logo.svg" alt="Logo" style={{height: '32px', marginRight: '4px'}} />
+                    <img src="logo.svg" alt="Logo" style={{ height: '2.5rem' }} />
                     <Typography
                         variant="h6"
                         noWrap
                         component="a"
                         href="/"
                         sx={{
-                            mr: 2,
+                            ml: .5,
                             fontFamily: 'monospace',
                             fontWeight: 700,
                             letterSpacing: '.3rem',
                             color: 'inherit',
                             textDecoration: 'none',
+                            display: { xs: 'none', sm: 'block' }
                         }}
                     >
                         GITME.md
