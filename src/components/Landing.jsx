@@ -1,5 +1,6 @@
 import React from "react";
 import { Container, Typography, Button, Box } from "@mui/material";
+import { Link } from 'react-router-dom';
 
 const Landing = () => {
   return (
@@ -16,11 +17,11 @@ const Landing = () => {
       <Typography variant="body1" gutterBottom>
         Create a stunning GitHub profile README in just a few clicks. Customize it to showcase your projects, skills, and achievements.
       </Typography>
-      <a href="/1">
+      <Link to="/1">
         <Button variant="contained" color="primary" size="large" style={{ marginTop: "20px" }}>
           Get Started
         </Button>
-      </a>
+      </Link>
     </Container>
   );
 };
