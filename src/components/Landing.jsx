@@ -17,7 +17,7 @@ const Landing = () => {
       <Typography variant="body1" gutterBottom>
         Create a stunning GitHub profile README in just a few clicks. Customize it to showcase your projects, skills, and achievements.
       </Typography>
-      <Link to="/1">
+      <Link to="/demo">
         <Button variant="contained" color="primary" size="large" style={{ marginTop: "20px" }}>
           Get Started
         </Button>

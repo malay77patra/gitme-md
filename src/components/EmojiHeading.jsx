@@ -1,32 +1,19 @@
-import Emoji from "./Emoji"
-import TemplateDataContext from "../contexts/TemplateDataContext"
-import { useContext, useState } from "react"
-import { EMOJIS } from '../utils'
+import H from './H'
+import Emoji from './Emoji'
 
-export default function EmojiHeading() {
-    const [templateData, setTemplateData] = useContext(TemplateDataContext)
+
+export default function EmojiHeading({ value, setValue }) {
 
     return (
         <div style={{
             display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'flex-start',
         }}>
-            <Emoji src={EMOJIS[templateData.emoji1]} size="24px" />
-            <h1 style={{
-                margin: '1rem',
-                lineHeight: '2rem',
-            }} contentEditable={true} suppressContentEditableWarning={true} onKeyDown={
-                (e) => {
-                    if (e.key === 'Enter') {
-                        e.preventDefault()
-                    } else {
-                        setTemplateData(draft => {
-                            draft.title1 = e.target.innerText
-                        })
-                    }
-                }
-            } >{templateData.title1}</h1>
+            <Emoji size={value.size} value={value.emoji} margin={value.margin} setValue={(v) => {
+                setValue({ ...value, emoji: v })
+            }} />
+            <H variant={value.variant} text={value.text} margin={0} setValue={(v) => {
+                setValue({ ...value, text: v })
+            }} />
         </div>
     )
 }

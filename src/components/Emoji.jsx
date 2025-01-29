@@ -1,46 +1,64 @@
-import { Dialog, DialogTitle, Container, DialogContent, Button } from "@mui/material"
-import { useState, useContext } from "react"
-import TemplateDataContext from "../contexts/TemplateDataContext"
-import { EMOJIS } from '../utils'
+import React, { useState } from 'react';
+import { Dialog, DialogActions, DialogContent, DialogTitle, IconButton, Button } from '@mui/material';
 
+const EMOJIS = {
+    meow_attention: 'https://emojis.slackmojis.com/emojis/images/1660853767/60881/meow_attention.gif?1660853767',
+    meow_party: 'https://emojis.slackmojis.com/emojis/images/1643514596/5999/meow_party.gif?1643514596',
+    meow_code: 'https://emojis.slackmojis.com/emojis/images/1643515023/10521/meow_code.gif?1643515023',
+    meow_adorable: 'https://emojis.slackmojis.com/emojis/images/1643515456/14767/meow_adorable.png?1643515456',
+    meow_coffeespitting: 'https://emojis.slackmojis.com/emojis/images/1643515239/12569/meow_coffeespitting.gif?1643515239',
+    meow_heart: 'https://emojis.slackmojis.com/emojis/images/1643514958/9845/meow_heart.png?1643514958'
+};
 
-const Emoji = ({ src, size }) => {
-    const [open, setOpen] = useState(false)
-    const [templateData, setTemplateData] = useContext(TemplateDataContext)
+const Emoji = ({ value, setValue, margin, size = '1rem' }) => {
+    const [open, setOpen] = useState(false);
 
-    const handleClick = () => {
-        setOpen(true)
+    const handleClickOpen = () => {
+        setOpen(true);
     };
+
     const handleClose = () => {
-        setOpen(false)
-    }
-    const handleEmojiClick = (emoji) => {
-        setTemplateData(draft => {
-            draft.emoji1 = emoji
-        })
-        setOpen(false)
-    }
+        setOpen(false);
+    };
+
+    const handleEmojiSelect = (emojiName) => {
+        setValue(emojiName);
+        handleClose();
+    };
 
     return (
         <>
-            <img src={src} style={{ width: size, height: size, cursor: 'pointer' }} onClick={handleClick} />
-            <Dialog onClose={handleClose} open={open}>
-                <DialogTitle sx={{ textAlign: 'center' }}>SELECT EMOJI</DialogTitle>
-                <DialogContent dividers>
-                    <Container sx={{ maxWidth: '450px', display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
-                        {Object.entries(EMOJIS).map(([key, url]) => (
-                            <div key={key} style={{ textAlign: 'center' }}>
-                                <Button variant="outlined">
-                                    <img src={url} alt={key} onClick={() => { handleEmojiClick(key) }} style={{ width: '32px', height: '32px', objectFit: 'contain' }} />
-                                </Button>
-                            </div>
+            <img src={EMOJIS[value]} alt={value} onClick={handleClickOpen} style={{
+                cursor: 'pointer',
+                width: size,
+                height: size,
+                margin: margin
+            }} />
+
+            <Dialog open={open} onClose={handleClose}>
+                <DialogTitle>Select an Emoji</DialogTitle>
+                <DialogContent>
+                    <div>
+                        {Object.entries(EMOJIS).map(([emojiName, emojiUrl]) => (
+                            <IconButton
+                                key={emojiName}
+                                onClick={() => handleEmojiSelect(emojiName)}
+                                style={{ margin: '10px' }}
+                            >
+                                <img src={emojiUrl} alt={emojiName} style={{
+                                    height: '2rem',
+                                    width: '2rem',
+                                }} />
+                            </IconButton>
                         ))}
-                    </Container>
+                    </div>
                 </DialogContent>
+                <DialogActions>
+                    <Button onClick={handleClose}>Close</Button>
+                </DialogActions>
             </Dialog>
         </>
     );
 };
-
 
 export default Emoji;

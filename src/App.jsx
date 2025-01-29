@@ -4,8 +4,10 @@ import useMediaQuery from "@mui/material/useMediaQuery";
 import Navbar from "./components/Navbar";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
+import './styles/components.css'
+
 import Landing from "./components/Landing";
-import Template1 from "./templates/Template1";
+import Template from "./Template";
 
 function App() {
   const userPrefersDark = useMediaQuery("(prefers-color-scheme: dark)");
@@ -42,9 +44,7 @@ function App() {
         <Router>
           <Routes>
             <Route path="/" element={<Landing />} />
-            <Route path="/1" element={<Template1 />} />
-            {/* <Route path="/2" element={<Template2 />} /> */}
-            {/* Add more routes as needed */}
+            <Route path="/demo" element={<Template />} />
           </Routes>
         </Router>
       </Container>
